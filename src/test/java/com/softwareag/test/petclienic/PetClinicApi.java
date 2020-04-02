@@ -7,7 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -19,6 +19,9 @@ public class PetClinicApi {
     @Autowired
     RestTemplate platformApi;
 
+    public HttpStatus health() {
+        return platformApi.getForEntity(baseUrl().path("health").build().toUri().toString(), String.class).getStatusCode();
+    }
 
     public Owner create(Owner owner) {
         return platformApi.postForObject(baseUrl().path("owners").build().toUri().toString(),owner, Owner.class);
