@@ -8,16 +8,32 @@
     <name>sdk-show</name>
     <url>http://maven.apache.org</url>
     <properties>
+        <c8y.version>1006.1.0</c8y.version>
         <junit.version>4.13</junit.version>
         <spring-boot-dependencies.version>2.2.4.RELEASE</spring-boot-dependencies.version>
-        <c8y.version>1006.1.0</c8y.version>
-
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <microservice.name>pet-clinic</microservice.name>
-        <skipDeploy>true</skipDeploy>
+        <microservice.name>sdk-show</microservice.name>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.nsn.cumulocity.clients-java</groupId>
+            <artifactId>microservice-autoconfigure</artifactId>
+            <version>${c8y.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,23 +46,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.nsn.cumulocity.clients-java</groupId>
-            <artifactId>microservice-autoconfigure</artifactId>
-            <version>${c8y.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -77,7 +76,6 @@
                             <goal>package</goal>
                         </goals>
                         <configuration>
-                            <rpmSkip>true</rpmSkip>
                             <name>${microservice.name}</name>
                             <image>${microservice.name}</image>
                             <encoding>UTF-8</encoding>
@@ -97,6 +95,21 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>cumulocity</id>
+            <layout>default</layout>
+            <url>http://download.cumulocity.com/maven/repository</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <url>http://download.cumulocity.com/maven/repository</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <profiles>
         <profile>
             <id>latest</id>
@@ -122,14 +135,13 @@
                                     <goal>package</goal>
                                 </goals>
                                 <configuration>
-                                    <rpmSkip>true</rpmSkip>
                                     <name>${microservice.name}</name>
                                     <image>${microservice.name}</image>
                                     <encoding>UTF-8</encoding>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>deploy</id>
+                                <id>upload</id>
                                 <phase>
                                     pre-integration-test
                                 </phase>
@@ -148,14 +160,14 @@
                 </plugins>
             </build>
         </profile>
-
         <profile>
             <id>functional-tests</id>
             <build>
                 <plugins>
+
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.2</version>
+                        <version>2.22.0</version>
                         <executions>
                             <execution>
                                 <phase>integration-test</phase>
@@ -163,6 +175,9 @@
                                     <goal>test</goal>
                                 </goals>
                                 <configuration>
+                                    <excludes>
+                                        <exclude>none</exclude>
+                                    </excludes>
                                     <includes>
                                         <include>**/*FunctionalTest</include>
                                     </includes>
@@ -176,22 +191,7 @@
                         </executions>
                     </plugin>
                 </plugins>
-
             </build>
         </profile>
     </profiles>
-
-    <repositories>
-        <repository>
-            <id>cumulocity</id>
-            <layout>default</layout>
-            <url>http://download.cumulocity.com/maven/repository</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>public</id>
-            <url>http://download.cumulocity.com/maven/repository</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
