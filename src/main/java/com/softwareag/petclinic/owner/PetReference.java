@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.owner;
+package com.softwareag.petclinic.owner;
 
 public class PetReference {
     private String id;

@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.owner;
+package com.softwareag.petclinic.owner;
 
 import com.cumulocity.model.idtype.GId;
 import com.cumulocity.model.pagination.PageRequest;

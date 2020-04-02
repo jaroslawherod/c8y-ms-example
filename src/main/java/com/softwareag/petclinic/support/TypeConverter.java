@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.support;
+package com.softwareag.petclinic.support;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.pet;
+package com.softwareag.petclinic.pet;
 
 public class Pet {
     private String id;

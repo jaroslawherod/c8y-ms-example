@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.pet;
+package com.softwareag.petclinic.pet;
 
 import com.cumulocity.model.pagination.PageRequest;
 import org.springframework.web.bind.annotation.*;

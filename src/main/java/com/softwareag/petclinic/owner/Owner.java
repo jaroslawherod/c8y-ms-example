@@ -1,4 +1,4 @@
-package com.softwareag.petclinc.owner;
+package com.softwareag.petclinic.owner;
 
 import java.util.List;
 

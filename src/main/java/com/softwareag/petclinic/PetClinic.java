@@ -1,4 +1,4 @@
-package com.softwareag.petclinc;
+package com.softwareag.petclinic;
 
 import com.cumulocity.microservice.autoconfigure.MicroserviceApplication;
 import org.springframework.boot.SpringApplication;
