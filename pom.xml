@@ -30,6 +30,19 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.nsn.cumulocity.clients-java</groupId>
+      <artifactId>microservice-autoconfigure</artifactId>
+      <version>${c8y.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <version>${spring-boot-dependencies.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
@@ -44,7 +57,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-dependencies.version}</version>
         <configuration>
-          <mainClass>com.softwareag.App</mainClass>
+          <mainClass>com.softwareag.PetClinic</mainClass>
         </configuration>
         <executions>
           <execution>

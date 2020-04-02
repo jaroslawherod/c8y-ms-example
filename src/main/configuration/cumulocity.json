@@ -1,0 +1,11 @@
+{
+  "apiVersion": "1",
+  "version": "@project.version@",
+  "contextPath": "pet-clinic",
+  "provider": {
+    "name": "Cumulocity GmbH"
+  },
+  "isolation": "MULTI_TENANT",
+  "requiredRoles": [
+  ]
+}
