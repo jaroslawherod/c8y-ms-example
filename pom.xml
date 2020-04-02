@@ -135,6 +135,7 @@
                                     <goal>package</goal>
                                 </goals>
                                 <configuration>
+                                    <rpmSkip>true</rpmSkip>
                                     <name>${microservice.name}</name>
                                     <image>${microservice.name}</image>
                                     <encoding>UTF-8</encoding>
