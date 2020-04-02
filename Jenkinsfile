@@ -1,6 +1,9 @@
 pipeline {
      agent {
-            docker { image 'openjdk:11-jdk' }
+            docker {
+             image 'openjdk:11-jdk'
+              args '--network centos_default'
+            }
      }
 
     stages {
