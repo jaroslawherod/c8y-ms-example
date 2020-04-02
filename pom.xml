@@ -89,6 +89,57 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>latest</id>
+      <properties>
+        <platform.baseURL>https://jaro-0.latest.stage.c8y.io/</platform.baseURL>
+        <platform.username>admin</platform.username>
+        <platform.password>q1w2e3r4</platform.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>deploy</id>
+      <build>
+        <plugins>
+            <plugin>
+              <groupId>com.nsn.cumulocity.clients-java</groupId>
+              <artifactId>microservice-package-maven-plugin</artifactId>
+              <version>${c8y.version}</version>
+              <executions>
+                <execution>
+                  <id>package</id>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>package</goal>
+                  </goals>
+                  <configuration>
+                    <rpmSkip>true</rpmSkip>
+                    <name>${microservice.name}</name>
+                    <image>${microservice.name}</image>
+                    <encoding>UTF-8</encoding>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>upload</id>
+                  <phase>pre-integration-test</phase>
+                  <goals>
+                    <goal>upload</goal>
+                  </goals>
+                  <configuration>
+                    <skipMicroserviceUpload>false</skipMicroserviceUpload>
+                    <url>${platform.baseURL}</url>
+                    <username>${platform.username}</username>
+                    <password>${platofrm.password}</password>
+                  </configuration>
+                </execution>
+              </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 
   <repositories>
     <repository>
