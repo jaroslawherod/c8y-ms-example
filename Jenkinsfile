@@ -14,5 +14,10 @@ pipeline {
                  sh './mvnw test'
             }
         }
+        stage('Functional-Test :: Latest-Stage') {
+            steps {
+                 sh './mvnw install -Pdeploy,latest.stage'
+            }
+        }
     }
 }

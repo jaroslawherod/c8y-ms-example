@@ -15,6 +15,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <microservice.name>pet-clinic</microservice.name>
+        <skipDeploy>true</skipDeploy>
     </properties>
 
     <dependencyManagement>
@@ -81,10 +82,41 @@
                             <encoding>UTF-8</encoding>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>
+                            pre-integration-test
+                        </phase>
+                        <goals>
+                            <goal>upload</goal>
+                        </goals>
+                        <configuration>
+                            <skipMicroserviceUpload>${skipDeploy}</skipMicroserviceUpload>
+                            <url>${platform.baseURL}</url>
+                            <username>${platfrom.username}</username>
+                            <password>${platfrom.password}</password>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <properties>
+                <skipDeploy>false</skipDeploy>
+            </properties>
+        </profile>
+        <profile>
+            <id>latest.stage</id>
+            <properties>
+                <platform.baseURL>https://jaro-0.latest.stage.c8y.io/</platform.baseURL>
+                <platform.username>admin</platform.username>
+                <platform.password>q1w2e3r4</platform.password>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
